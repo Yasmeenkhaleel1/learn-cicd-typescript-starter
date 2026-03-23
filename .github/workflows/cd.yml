@@ -1,11 +1,13 @@
-name: CD
+name: CI
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
 
 jobs:
-  Deploy:
+  Tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,5 +22,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build app
-        run: npm run build
+      - name: Run tests
+        run: npm run test
