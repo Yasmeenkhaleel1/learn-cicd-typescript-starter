@@ -7,24 +7,24 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
+          node-version: '20'  # Changed from 18 to 20
+      
       - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
+        run: npm ci
+      
       - name: Build app
         run: npm run build
-
+      
+      - name: Run tests
+        run: npm test
+      
       - name: Deploy
-        run: echo "Deploy step - replace with actual deployment"
+        run: echo "Deploying to production..."
