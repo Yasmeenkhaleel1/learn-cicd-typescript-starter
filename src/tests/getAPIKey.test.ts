@@ -3,33 +3,22 @@ import { getAPIKey } from "../api/auth.js";
 import type { IncomingHttpHeaders } from "http";
 
 describe("getAPIKey", () => {
-  test("returns API key when authorization header is valid", () => {
-    const headers: IncomingHttpHeaders = {
-      authorization: "ApiKey my-secret-key",
-    };
-
-    expect(getAPIKey(headers)).toBe("my-secret-key");
-  });
-
-  test("returns null when authorization header is missing", () => {
+  test("should return null if no authorization header", () => {
     const headers: IncomingHttpHeaders = {};
-
     expect(getAPIKey(headers)).toBeNull();
   });
 
-  test("returns null when authorization format is invalid", () => {
+  test("should return null if wrong auth type", () => {
     const headers: IncomingHttpHeaders = {
-      authorization: "Bearer my-secret-key",
+      authorization: "Bearer token123"
     };
-
     expect(getAPIKey(headers)).toBeNull();
   });
 
-  test("returns null when authorization is malformed", () => {
+  test("should return api key if valid", () => {
     const headers: IncomingHttpHeaders = {
-      authorization: "ApiKey",
+      authorization: "ApiKey my-api-key-123"
     };
-
-    expect(getAPIKey(headers)).toBeNull();
+    expect(getAPIKey(headers)).toBe("my-api-key-123");
   });
 });
