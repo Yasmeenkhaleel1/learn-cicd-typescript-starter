@@ -7,18 +7,21 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up Node
+      
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-
+          node-version: '18'
+      
       - name: Install dependencies
         run: npm ci
-
+      
       - name: Build app
         run: npm run build
+      
+      - name: Deploy
+        run: echo "Deploy step - replace with actual deployment"
