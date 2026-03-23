@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import crypto from "crypto";
 import { v4 as uuidv4 } from "uuid";
 
-import { createUser, getUser } from "../db/users.js";
-import { respondWithJSON, respondWithError } from "./responses.js";
+import { createUser, getUser } from "../db/queries/users.js";
+import { respondWithJSON, respondWithError } from "./json.js";
 import type { User } from "../db/schema.js";
 
 export async function handlerUsersCreate(req: Request, res: Response) {
