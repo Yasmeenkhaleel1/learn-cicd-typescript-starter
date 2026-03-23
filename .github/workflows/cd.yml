@@ -1,13 +1,11 @@
-name: CI
+name: CD
 
 on:
-  pull_request:
-    branches: [main]
   push:
     branches: [main]
 
 jobs:
-  Tests:
+  Deploy:  # <- هذا الاسم مهم يكون "Deploy"
     runs-on: ubuntu-latest
     
     steps:
@@ -25,8 +23,8 @@ jobs:
       - name: Run tests
         run: npm test
       
-      - name: Check formatting
-        run: npm run format:check
-      
       - name: Build app
-        run: npm run build
+        run: npm run build  # <- هذا الأمر مهم
+      
+      - name: Deploy
+        run: echo "Deploying..."
