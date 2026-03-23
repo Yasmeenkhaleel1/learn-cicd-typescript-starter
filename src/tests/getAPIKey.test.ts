@@ -10,14 +10,14 @@ describe("getAPIKey", () => {
 
   test("should return null if wrong auth type", () => {
     const headers: IncomingHttpHeaders = {
-      authorization: "Bearer token123"
+      authorization: "Bearer token123",
     };
     expect(getAPIKey(headers)).toBeNull();
   });
 
   test("should return api key if valid", () => {
     const headers: IncomingHttpHeaders = {
-      authorization: "ApiKey my-api-key-123"
+      authorization: "ApiKey my-api-key-123",
     };
     expect(getAPIKey(headers)).toBe("my-api-key-123");
   });
